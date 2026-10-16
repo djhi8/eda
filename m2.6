@@ -1,0 +1,26 @@
+PRACTICAL 6
+Aim:-Matrix slicing and agrregation
+import breeze.linalg._
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val matrix = DenseMatrix(
+      (5, 3, 6, 2),
+      (1, 8, 4, 7),
+      (9, 2, 3, 6),
+      (4, 5, 8, 1)
+    )
+    val subMatrix = matrix(1 to 2, 1 to 2)
+    val rowSums = sum(matrix(*, ::))
+    val colSums = sum(matrix(::, *))
+
+    println("rowSums")
+    println(rowSums)
+    println("colSums")
+    println(colSums)
+    println("matrix")
+    println(matrix)
+    println("subMatrix")
+    println(subMatrix)
+  }
+}
