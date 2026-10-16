@@ -1,0 +1,54 @@
+PRACTICAL 2
+Aim:-Frequency distribution and data sorting
+
+object Main extends App {
+  // Dataset (Name, Marks)
+  val students = List(
+    ("Aarav", 85),
+    ("Ananya", 92),
+    ("Rohan", 78),
+    ("Isha", 65),
+    ("Kabir", 85),
+    ("Priya", 74),
+    ("Siddharth", 92),
+    ("Neha", 78),
+    ("Aman", 88),
+    ("Diya", 95)
+  )
+
+  // Frequency Calculation
+  val frequency = students.groupBy(_._2).map {
+    case (marks, list) => (marks, list.length)
+  }.toSeq.sortBy(-_._1)
+
+  println("Frequency Distribution:")
+  println("Marks\tfrequency")
+  frequency.foreach {
+    case (marks, freq) => println(s"$marks\t$freq")
+  }
+
+  // Cumulative Frequency
+  println("\n==== Cumulative Frequency ====")
+  println("Marks\tfrequency\tcumulative")
+  var cumulative = 0
+  frequency.foreach {
+    case (marks, freq) =>
+      cumulative += freq
+      println(s"$marks\t$freq\t\t$cumulative")
+  }
+
+  // Sorted Dataset
+  val sortedStudents = students.sortBy(-_._2)
+  println("\n==== Sorted Dataset ====")
+  println("Name\tMarks")
+  sortedStudents.foreach {
+    case (name, marks) => println(s"$name\t$marks")
+  }
+
+  // Top 5 Students
+  val top5 = sortedStudents.take(5)
+  println("\n==== Top 5 Students ====")
+  println("Name\tMarks")
+  top5.foreach {
+    case (name, marks) => println(s"$name\t$marks")
+  }
