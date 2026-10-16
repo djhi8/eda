@@ -1,0 +1,38 @@
+PRACTICAL 5
+Aim:-Distance matrices and nearest neighbour
+
+import breeze.linalg._
+import breeze.numerics._
+
+object Main extends App {
+  val trainingData = List(
+    (DenseVector(1.0, 2.0), "Class X"),
+    (DenseVector(2.0, 3.0), "Class X"),
+    (DenseVector(6.0, 7.0), "Class Y"),
+    (DenseVector(7.0, 8.0), "Class Y")
+  )
+  val testPoint = DenseVector(2.0, 2.0)
+
+  def euclideanDistance(v1: DenseVector[Double], v2: DenseVector[Double]): Double = {
+    norm(v1 - v2)
+  }
+
+  println("Training Data")
+  println("------------")
+
+  val distances = trainingData.map {
+    case (point, label) =>
+      val dist = euclideanDistance(point, testPoint)
+      println(f"$point\t$label\tDistance = $dist%.2f")
+      (dist, label)
+  }
+
+  val nearest = distances.minBy(_._1)
+
+  println("\n-------------------------")
+  println("Test Point: " + testPoint)
+  println("Nearest Class: " + nearest._2)
+  println(f"Distance: ${nearest._1}%.2f")
+  println("\nPrediction:")
+  println("The test point belongs to " + nearest._2)
+}
