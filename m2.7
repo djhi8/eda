@@ -1,0 +1,54 @@
+PRACTICAL 7
+Aim:-Element-wise matrix operations
+import breeze.linalg._
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val matrix1 = DenseMatrix(
+      (5.0, 3.0),
+      (6.0, 9.0)
+    )
+    val matrix2 = DenseMatrix(
+      (2.0, 6.0),
+      (3.0, 3.0)
+    )
+    val resultAdd = matrix1 + matrix2
+    val resultSub = matrix1 - matrix2
+    val resultDiv = matrix1 /:/ matrix2
+    val resultMul = matrix1 *:* matrix2
+
+    val addCheck = DenseMatrix(
+      (7.0, 9.0),
+      (9.0, 12.0)
+    )
+    val subCheck = DenseMatrix(
+      (3.0, -3.0),
+      (3.0, 6.0)
+    )
+    val divCheck = DenseMatrix(
+      (2.5, 0.5),
+      (2.0, 3.0)
+    )
+    val mulCheck = DenseMatrix(
+      (10.0, 18.0),
+      (18.0, 27.0)
+    )
+
+    println("Matrix1")
+    println(matrix1)
+    println("Matrix2")
+    println(matrix2)
+    println("Addition")
+    println(resultAdd)
+    println("Subtraction")
+    println(resultSub)
+    println("Division")
+    println(resultDiv)
+    println("Multiplication")
+    println(resultMul)
+    println("Addition correct: " + (resultAdd == addCheck))
+    println("Subtraction correct: " + (resultSub == subCheck))
+    println("Division correct: " + (resultDiv == divCheck))
+    println("Multiplication correct: " + (resultMul == mulCheck))
+  }
+}
