@@ -1,0 +1,30 @@
+PRACTICAL 3
+aim:- random dataset and variability measures
+
+import scala.util.Random
+import scala.math._
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val data = (1 to 10).map(_ => Random.nextInt(100))
+    val mean = data.sum.toDouble / data.length
+    val variance = data.map(x => pow(x - mean, 2)).sum / data.length
+    val stdDeviation = sqrt(variance)
+
+    println()
+    println("Statistical Analysis")
+    println()
+
+    println("Dataset: " + data.mkString("[", ", ", "]"))
+    printf("Mean: %.2f\n", mean)
+    printf("Variance: %.2f\n", variance)
+    printf("Standard Deviation: %.2f\n", stdDeviation)
+
+    println("Interpretation:")
+    if (stdDeviation < 15) {
+      println("The data values are closely clustered around the mean")
+    } else {
+      println("The data values are widely spread around the mean")
+    }
+  }
+}
