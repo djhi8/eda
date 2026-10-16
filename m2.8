@@ -1,0 +1,32 @@
+PRACTICAL 8
+Aim:-Spark Dataframe Operations
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import avg
+
+spark = SparkSession.builder \
+    .appName("DataFrame Example") \
+    .getOrCreate()
+
+data = [
+    ("Aarav", "CS", 82),
+    ("Ananya", "IT", 90),
+    ("Kabir", "IT", 75),
+    ("Priya", "CS", 68),
+    ("Rohan", "IT", 85),
+    ("Diya", "CS", 94)
+]
+
+columns = ["Name", "Department", "Marks"]
+df = spark.createDataFrame(data, columns)
+
+df.show()
+
+df.filter(df.Marks > 80).show()
+
+df.groupBy("Department") \
+    .agg(avg("Marks").alias("Average_Marks")) \
+    .show()
+
+spark.stop()
+
