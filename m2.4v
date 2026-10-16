@@ -1,0 +1,21 @@
+PRACTICAL 4
+Aim:- vector operations using breeze
+import breeze.linalg._
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val vector1 = DenseVector(11.0, 21.0, 31.0, 41.0, 51.0)
+    val vector2 = DenseVector(12.0, 31.0, 41.0, 51.0, 0.0)
+
+    val sum = vector1 + vector2
+    val mean = sum.toArray.sum / sum.length
+    val dotProduct = vector1 dot vector2
+
+    println("Breeze Vector Operations")
+    println("Vector1: " + vector1)
+    println("Vector2: " + vector2)
+    println("Sum of Vectors: " + sum)
+    println("Mean of Vector1: " + mean)
+    println("Dot Product: " + dotProduct)
+  }
+}
