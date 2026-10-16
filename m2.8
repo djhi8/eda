@@ -1,0 +1,33 @@
+
+PRACTICAL 8
+Aim:-CSV file handling and basics statistics
+object Main extends App {
+  val CSVData =
+    """Name,Marks
+Rahul,82
+Priya,76
+Neha,90
+Amit,84
+Vikas,68
+Ananya,96
+""".stripMargin
+
+  val lines = CSVData.split("\n").drop(1)
+  val marks = lines.map(_.split(",")(1).toDouble)
+  val mean = marks.sum / marks.length
+  val minimum = marks.min
+  val maximum = marks.max
+
+  println("CSVData")
+  println(CSVData)
+  println("lines")
+  println(lines.mkString("\n"))
+  println("marks")
+  println(marks.mkString(", "))
+  println("mean")
+  println(mean)
+  println("minimum")
+  println(minimum)
+  println("maximum")
+  println(maximum)
+}
