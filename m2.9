@@ -1,0 +1,51 @@
+PRACTICAL 9
+Aim:-Data cleaning and transformation
+object Main extends App {
+  val data = List(
+    ("Aman", Some(78.0), "Male"),
+    ("Sneha", Some(90.0), "Female"),
+    ("Rohan", None, "Male"),
+    ("Pooja", Some(82.0), "Female"),
+    ("Vikas", None, "Male"),
+    ("Kunal", Some(70.0), "Male"),
+    ("Neha", Some(80.0), "Female")
+  )
+
+  println("Original Dataset")
+  println("Name\tMarks\tGender")
+  data.foreach(println)
+
+  val validMarks = data.flatMap(_._2)
+  val mean = validMarks.sum / validMarks.length
+
+  val cleanedData = data.map {
+    case (name, marks, gender) =>
+      (name, marks.getOrElse(mean), gender)
+  }
+
+  println("ValidMarks")
+  println(validMarks)
+  println("mean")
+  println(mean)
+  println("CleanedData")
+  println(cleanedData)
+}
+
+PRACTICAL 10
+Aim:-Data visualization using Breeze-viz
+object Main extends App {
+  val data = List(12, 18, 25, 16, 34, 11, 28, 19, 14, 17)
+  val histogram = data
+    .groupBy(x => (x / 5) * 5)
+    .map { case (bin, values) => (bin, values.size) }
+    .toSeq
+    .sortBy(_._1)
+
+  println("Histogram")
+  println("Range\tFrequency")
+  histogram.foreach {
+    case (bin, freq) =>
+      println(s"${bin} - ${bin + 4}\t${freq}")
+  }
+}
+
