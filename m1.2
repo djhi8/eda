@@ -1,0 +1,39 @@
+PRACTICAL 2
+Aim:-descriptive statistics using scala collections
+object Main{
+  def main(args: Array[String]): Unit = {
+
+    //Create a list of numbers
+    val numbers = List(10,11,18,22,14,26,30,14,20,32)
+
+    //Mean
+    val mean = numbers.sum.toDouble / numbers.length
+
+    //Median
+    val sorted = numbers.sorted
+    val n = sorted.length
+    val median =
+      if (n % 2 == 0)
+        (sorted(n/2 -1) + sorted(n/2)) / 2.0
+      else
+        sorted(n/2)
+
+    //Mode
+    val mode = numbers
+      .groupBy(identity)
+      .map { case (num, list) => (num, list.size)}
+      .maxBy(_._2)
+      ._1
+
+    //Display result
+    println("==========")
+    println("Statistical Analysis")
+    println("==========")
+    println("Numbers :" + numbers.mkString("[", ", ", ")"))
+    printf("Mean: %.2f\n", mean)
+    printf("Median: %.2f\n", median)
+    println("Mode :" + mode)
+
+    println("==========")
+  }
+}
