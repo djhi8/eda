@@ -1,0 +1,33 @@
+PRACTICAL 9
+Aim:-Data joining and output in spark
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("Join Example") \
+    .getOrCreate()
+
+students = [
+    (101, "Aarav"),
+    (102, "Ananya"),
+    (103, "Rohan"),
+    (104, "Isha"),
+    (105, "Kabir")
+]
+
+marks = [
+    (101, 85),
+    (102, 92),
+    (103, 78),
+    (104, 65),
+    (105, 88)
+]
+
+df1 = spark.createDataFrame(students, ["ID", "Name"])
+df2 = spark.createDataFrame(marks, ["ID", "Marks"])
+
+joined_df = df1.join(df2, on="ID", how="inner")
+
+joined_df.show()
+
+spark.stop()
