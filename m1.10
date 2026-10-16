@@ -1,0 +1,18 @@
+
+PRACTICAL 10
+Aim:-Data visualization using Breeze-viz
+object Main extends App {
+  val data = List(12, 18, 25, 16, 34, 11, 28, 19, 14, 17)
+  val histogram = data
+    .groupBy(x => (x / 5) * 5)
+    .map { case (bin, values) => (bin, values.size) }
+    .toSeq
+    .sortBy(_._1)
+
+  println("Histogram")
+  println("Range\tFrequency")
+  histogram.foreach {
+    case (bin, freq) =>
+      println(s"${bin} - ${bin + 4}\t${freq}")
+  }
+}
