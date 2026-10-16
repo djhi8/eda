@@ -1,0 +1,26 @@
+PRACTICAL 5
+Aim:- Matrix operations using breeze
+import breeze.linalg._
+import breeze.stats.distributions.Rand
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val matrix = DenseMatrix.rand[Double](3, 3, Rand.uniform)
+    val transposeMatrix = matrix.t
+    val determinant = det(matrix)
+
+    println("Matrix Operation (Breeze)")
+    println("Original Matrix:")
+    println(matrix)
+    println("\nTransposeMatrix:")
+    println(transposeMatrix)
+    printf("\nDeterminant: %.4f\n", determinant)
+    println("\nInterpretation:")
+    
+    if (math.abs(determinant) < 1e-6) {
+      print("The matrix is Singular (non-invertible).")
+    } else {
+      println("The matrix is non-singular(invertival)")
+    }
+  }
+}
